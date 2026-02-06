@@ -56,21 +56,21 @@ if ( ! function_exists( 'bold_photography_setup' ) ) :
 		 * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
 		 */
 		add_theme_support( 'post-thumbnails' );
-		
+
 		set_post_thumbnail_size( 1920, 1080, true ); // Ratio 4:3
-		
+
 		// Used in testimonials
 		add_image_size( 'bold-photography-testimonial', 150, 150, true ); // Ratio 1:1
-		
+
 		// Used in stats
 		add_image_size( 'bold-photography-stats', 50, 50, true ); // Ratio 1:1
-		
+
 		// Used in team
 		add_image_size( 'bold-photography-team', 640, 853, true ); // Ratio 3:4
-		
+
 		// Used in logo slider
 		add_image_size( 'bold-photography-logo-slider', 175, 133, true ); // Ratio 4:3
-		
+
 		// Used in Portfolio
 		add_image_size( 'bold-photography-portfolio', 1920, 9999, true ); // Flexible Height
 
@@ -269,7 +269,7 @@ if ( ! function_exists( 'bold_photography_template_redirect' ) ) :
 		if ( 'no-sidebar-full-width' === $layout ) {
 			$GLOBALS['content_width'] = 1510;
 		}
-		
+
 	}
 endif;
 add_action( 'template_redirect', 'bold_photography_template_redirect' );
@@ -370,7 +370,7 @@ if ( ! function_exists( 'bold_photography_fonts_url' ) ) :
 			if ( 'off' !== $oswald ) {
 			$font_families[] = 'Oswald:200,300,400,500,600,700,400italic,700italic';
 			}
-			
+
 
 			$query_args = array(
 				'family' => urlencode( implode( '|', $font_families ) ),
@@ -411,10 +411,6 @@ function bold_photography_scripts() {
 	// Theme block stylesheet.
 	wp_enqueue_style( 'bold-photography-block-style', get_theme_file_uri( 'assets/css/blocks.css' ), array( 'bold-photography-style' ), '1.0' );
 
-	// Load the html5 shiv.
-	wp_enqueue_script( 'bold-photography-html5',  get_theme_file_uri( 'assets/js/html5.min.js' ), array(), '3.7.3' );
-	wp_script_add_data( 'bold-photography-html5', 'conditional', 'lt IE 9' );
-
 	wp_enqueue_script( 'bold-photography-skip-link-focus-fix', get_theme_file_uri( 'assets/js/skip-link-focus-fix.min.js' ), array(), '201800703', true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
@@ -424,7 +420,7 @@ function bold_photography_scripts() {
 	$deps[] = 'jquery';
 
 	$enable_featured_content = get_theme_mod( 'bold_photography_featured_content_option', 'disabled' );
-	
+
 	if ( bold_photography_check_section( $enable_featured_content ) ) {
 		wp_register_script( 'jquery-match-height', get_theme_file_uri( 'assets/js/jquery.matchHeight.min.js' ), array( 'jquery' ), '201800703', true );
 
@@ -439,7 +435,7 @@ function bold_photography_scripts() {
 
 	//Slider Scripts
 	$enable_slider      = bold_photography_check_section( get_theme_mod( 'bold_photography_slider_option', 'disabled' ) );
-	
+
 	$enable_testimonial_slider      = bold_photography_check_section( get_theme_mod( 'bold_photography_testimonial_option', 'disabled' ) );
 
 	if ( $enable_slider || $enable_testimonial_slider ) {
@@ -488,7 +484,7 @@ add_action( 'wp_enqueue_scripts', 'bold_photography_scripts' );
 function bold_photography_block_editor_styles() {
 	// Block styles.
 	wp_enqueue_style( 'bold-photography-block-editor-style', get_theme_file_uri( 'assets/css/editor-blocks.css' ) );
-	
+
 	// Add custom fonts.
 	wp_enqueue_style( 'bold-photography-fonts', bold_photography_fonts_url(), array(), null );
 }
